@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <input type="number" class="item" id="num" placeholder="introduce un numero">
+        <button type="button" class="item" onclick="addNum()">Agregar numero</button>
+        <button type="button" class="item" onclick="calNewArray()">Calcular nuevo arreglo</button>
+        <button type="button" class="item" onclick="cleanArray()">limpiar arreglo</button>
+        <p>tu arreglo es: [<span id="arreglo"></span>]</p>
+        <p>Tu nuevo arreglo es: [<span id="resultado"></span>]</p>
+    
+    </div>
+
+    <script>
+
+        var myArreglo = [];
+        var nuevo = [];
+        var campo = document.getElementById("num");
+        var arreglo = document.getElementById("arreglo");
+        var nuevoArreglo = document.getElementById("resultado");
+        
+        //Método encargado de agregar un nuevo elemento al arreglo
+        const addNum = () => {
+            myArreglo.push(campo.value);
+            campo.value = "";
+            arreglo.innerHTML = myArreglo;
+            campo.focus();
+        }
+        
+        // Método encargado de generar el nuevo arreglo
+        const calNewArray = () => {        
+            for (let i = 0; i < myArreglo.length; i++) {
+                var arreglo = [...myArreglo];
+                arreglo[i] = 1;
+                var x = arreglo.reduce((total, num) => {     
+                    return total * num;
+                });
+                nuevo.push(x);
+            }
+            nuevoArreglo.innerHTML = nuevo;
+            campo.value = "";
+        }
+        
+        //Método para limpiar campos de texto y arreglos
+        const cleanArray = () => {
+            myArreglo = [];
+            nuevo = [];
+            arreglo.innerHTML = "";
+            nuevoArreglo.innerHTML = "";
+        }
+
+    </script>
+</body>
+</html>
